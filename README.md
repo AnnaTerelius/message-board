@@ -1,3 +1,56 @@
+## Frontend Coding Challenge: 
+ 
+Please complete the following technical task: 
+ 
+Design and build a webpage to work as a message board. 
+ 
+It should include these features:   - a client can create a message in the service   - a client can create a child-message in the service   - the same client can modify their message   - the same client can delete their message   - a client can view any message available   - add test to critical places of the code (OPTIONAL) 
+ 
+The UI is up to you to decide how to implement. Use the provided Mock API for the implementation. 
+ 
+We recommend using React + Redux, but any technology works as long as you are comfortable with it. 
+ 
+The complete source code should be easy to build and run, provide instructions for how to do so in a README file. 
+ 
+Mock API: 
+ 
+GET /messages Response: { result: [{ id: number, message: string, parentId: number, author: number, }] } 
+ 
+POST /messages Request: { message: string, parentId: number, author: number, } 
+Response: 204 
+ 
+PUT /messages/{id} Request: { message: string } Response: 204 
+ 
+DELETE /messages/{id} Response: 204 
+ 
+ 
+## Junior Frontend Coding Challenge (has less things and no message-threads): 
+ 
+Please complete the following technical task: 
+ 
+Design and build a webpage to work as a basic message board. 
+ 
+It should include these features:   - a client can create a message in the service   - the same client can modify their message   - the same client can delete their message   - a client can view any message available 
+ 
+The UI is up to you to decide how to implement. Use the provided Mock API for the implementation. The Mock API could be mocked using array storage or another in-memory solution. 
+ 
+We recommend using React + Redux, but any technology works as long as you are comfortable with it. 
+ 
+The complete source code should be easy to build and run, provide instructions for how to do so in a README file. 
+ 
+Mock API: 
+ 
+GET /messages Response: { result: [{ id: number, message: string, 
+author: number, 
+}] 
+} 
+ 
+POST /messages Request: { message: string, author: number, } Response: 204 
+ 
+PUT /messages/{id} Request: { message: string } Response: 204 
+ 
+DELETE /messages/{id} Response: 204 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
