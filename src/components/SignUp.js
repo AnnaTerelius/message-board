@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import Modal from 'react-modal'
 import {useDispatch} from 'react-redux'
 import { useHistory } from 'react-router'
+import { Link } from 'react-router-dom'
 import { signIn } from '../reducers/messages'
 
 //const URL = 'https://api-project-yoga-poses.herokuapp.com/sessions'
@@ -27,14 +28,17 @@ export const SignUp = () => {
     }
 
     return (
-      <div>
+      <div className="formBackground">
+        <Link to='/sessions'><button className="logIn-Out-Btn">Log in</button> </Link>
         <h1>WELCOME TO MESSAGE-BOARD</h1>
-        <p>Please sign up below</p>
+        <p>Please sign up</p>
       
       <div className="logIn">
+      
         
         <form className='logInForm' onSubmit={handleFormSubmit}>
         <input 
+            className="inputField"
             value={userName}
             placeholder='Username' 
             type='name'
@@ -43,6 +47,7 @@ export const SignUp = () => {
             required>
         </input>
         <input 
+          className="inputField"
           value={password}
           placeholder='Password' 
           type='password'
@@ -50,9 +55,10 @@ export const SignUp = () => {
           onChange={event => { setPassword(event.target.value); console.log("event onChange: password är " + event.target.value) }} 
           required>
         </input>
-        <button className="signUpButton"onClick={handleFormSubmit} type="submit">Sign up</button>
+        <button className="submit-btn"onClick={handleFormSubmit} type="submit">Sign up</button>
         </form>
       </div>
+     
       </div>
       
       

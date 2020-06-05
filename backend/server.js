@@ -27,7 +27,7 @@ const Message = mongoose.model("Message", {
       default: Date.now
     },
     author: {
-      type: Number,
+      type: String,
     },
     message: {
       type: String,
@@ -88,8 +88,11 @@ app.use(bodyParser.json())
 
 const authenticateUser = async (req, res, next) => {
   try { 
+    console.log(req.header("Authorization"))
   const user = await User.findOne({accessToken: req.header("Authorization")});
   if (user) {
+    
+    console.log("authenricateUser successful")
     req.user = user;
     next();
   } else {
@@ -113,7 +116,7 @@ app.get('/users/:userId', (req, res) => {
   res.json({ name: req.user.name })
 })*/
 
-//app.get("/messages", authenticateUser);
+app.get("/messages", authenticateUser);
 app.get("/messages", async (req, res) => {
  const message = await Message.find();
  res.send(message);
@@ -138,7 +141,7 @@ app.get("/users", async (req, res) => {
  })
 
 
-//app.post("/messages", authenticateUser);
+app.post("/messages", authenticateUser);
 app.post("/messages", async (req, res) => {
   //this will only happen if the user is Authenticated(if the next function is called)
     //get the info send by user to our API endpoint
@@ -155,7 +158,9 @@ app.post("/messages", async (req, res) => {
   //to log in user
 app.post("/sessions", async (req, res) => {
   try { 
-    const {userName, password} = req.body;
+    console.log(req.body)
+ 
+    //const {userName, password} = req.body;
     const user = await User.findOne({userName: req.body.userName})
       if(user && bcrypt.compareSync(req.body.password, user.password)) {
       //succes
@@ -197,9 +202,10 @@ app.post("/sessions", async (req, res) => {
   });
 
   //to update message
+  app.put("/messages/:id", authenticateUser);
   app.put("/messages/:id", async (req, res) => {
     try {
-      const message = await Message.findOne({ _id: req.params.id })
+      const message = await Message.findOne({ _id: req.params.id, author: req.user._id })
   
       if (req.body.message) {
         message.message = req.body.message
@@ -210,7 +216,7 @@ app.post("/sessions", async (req, res) => {
       
     } catch {
       res.status(404)
-      res.send({ error: "Message doesn't exist!" })
+      res.send({ error: "Message doesn't exist or you don't have access!" })
     }
   })
   

@@ -16,26 +16,33 @@ export const LogIn = () => {
     const [errorMsg, setErrorMsg] = useState(null)
 
     const history = useHistory()
-
-    const handleFormSubmit = event => {
+   // const getToken = async () => {
+    const handleFormSubmit  = async event => {
       event.preventDefault()
-      dispatch(logIn (userName, password))
+      await dispatch(logIn (userName, password))
       setUserName('')
       setPassword('')
+      //history.push('/messages')
 
     }
 
   
 
     return (
-      <div>
+      <div className="formBackground">
+          <section className="backLink"> 
+        <button className="logIn-Out-Btn" onClick={() => history.goBack()}>
+          Sign up
+        </button>
+      </section> 
         <h1>WELCOME TO MESSAGE-BOARD</h1>
-        <p>Please log in below</p>
+        <p>Please log in</p>
       
       <div className="logIn">
         
         <form className='logInForm' onSubmit={handleFormSubmit}>
         <input 
+            className="inputField"
             value={userName}
             placeholder='Username' 
             type='name'
@@ -43,22 +50,21 @@ export const LogIn = () => {
             onChange={event => { setUserName(event.target.value) }} 
             required>
         </input>
-        <input value={password}
+        <input 
+          className="inputField"
+          value={password}
           placeholder='Password' 
           type='password'
           name='password'
           onChange={event => { setPassword(event.target.value) }} 
           required>
         </input>
-        <button className="signInButton"onClick={handleFormSubmit} type="submit">Log in</button>
+        <button className="submit-btn"onClick={handleFormSubmit} type="submit">Log in</button>
         </form>
       </div>
-      <section className="backLink"> 
-        <button onClick={() => history.goBack()} className="backLink">
-          Back
-        </button>
-      </section> 
+    
       </div>
+      
       
       
     );

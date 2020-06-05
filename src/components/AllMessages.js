@@ -17,9 +17,16 @@ export const AllMessages = () => {
     const [newMessage, setnewMessage] = useState ('')
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [modalMessageId, setModalMessageId] = useState('');
+
+    const accessToken = window.localStorage.getItem('accessToken')
+    const userId = window.localStorage.getItem('userId')
    
     useEffect(() => {
-      dispatch(fetchMessages());
+     
+      console.log("Access token from localStorage: " + accessToken)
+      console.log("allMessages about to fetch messages " + accessToken)
+      dispatch(fetchMessages(accessToken));
+      console.log(allMessages)
     }, []);
 
     const handleEditOnClick = (event) => {
@@ -45,7 +52,7 @@ export const AllMessages = () => {
 
     const handleClose = (event) => {
       event.preventDefault()
-      dispatch(updateMessage(event.target.value, newMessage))
+      dispatch(updateMessage(event.target.value, newMessage, accessToken, userId))
       console.log("inside handleClose")
       setModalIsOpen(false)
       setnewMessage('')
@@ -53,7 +60,7 @@ export const AllMessages = () => {
 
     return (
      <> 
-    <h1>MESSAGES</h1>
+   
     <ul> 
     {allMessages.map((message)=> (
         <div className="allMessages">

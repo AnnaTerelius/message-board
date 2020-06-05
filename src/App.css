@@ -248,10 +248,19 @@ body {
 
 .formBackground{
   width: 100%;
-  height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+
+.logIn-Out-Btn{
+    margin-top: 50px;
+    position: absolute;
+    right: 100px;
+    background: none;
+    border: none;
+    font-size: 20px;
 }
 
 .App {
@@ -274,6 +283,7 @@ body {
 }
 
 .inputContainer{
+    margin-top: 20px;
   background-color: white;
   border-radius: 20px;
   border: 1px solid #dbdbdb;
@@ -283,6 +293,7 @@ body {
 h1{
   font-size: 30px;
   margin: 0px;
+  margin-top: 100px;
 }
 
 .inputField{
@@ -319,7 +330,7 @@ ul {
     border: 1px solid #dbdbdb;
     box-shadow: 0 3px 20px -10px rgba(0,0,0,.75);
     width: 40%;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 li{
@@ -331,6 +342,9 @@ li{
 
 .message-text{
     height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .input-buttons-container{
@@ -414,6 +428,8 @@ border: 1px solid black;
 .logIn{
     display: flex;
     justify-content: center;
+    width: 100%;
+    
 }
 
 .logInForm{
@@ -425,6 +441,8 @@ border: 1px solid black;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    border: 1px solid #dbdbdb;
+    box-shadow: 0 3px 20px -10px rgba(0,0,0,.75);
 }
 
 
